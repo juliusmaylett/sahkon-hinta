@@ -11,25 +11,22 @@ source_tz = timezone('CET')
 output_tz = timezone('Europe/Helsinki')
 
 def palautaDataSarakkeista(jsondata, sarakkeet=(0,)):
-    """ Hakee JSON-lähdedatasta haluttujen päivien tiedot.
-    Sarake 0 = viimeisin päivä eli joko kuluva tai tuleva päivä. """
+    
     data = []
 
     for sarake in sarakkeet:
         for row in jsondata["data"]["Rows"]:
             if not (row.get("IsExtraRow", True)) and (row.get("Columns")[sarake].get("Value", "-")) != '-':
-                hour = unescape(row.get("Name")).split()[0]
                 
-                tuntiHinta = row.get("Columns")[sarake].get("Value", None)
-
+                hour = unescape(row.get("Name")).split()[0]
+                tuntiHintaString = row.get("Columns")[sarake].get("Value", None)
                 aika = source_tz.localize(
                     parse(row.get("Columns")[sarake].get("CombinedName", None) + "T" + hour,
                           parserinfo(dayfirst=True)))
                 
-                hinta = float(tuntiHinta.replace(',','.'))
                 tunti = {}
                 tunti['timestamp'] = aika
-                tunti['spotprice'] = hinta
+                tunti['spotprice'] = float(tuntiHintaString.replace(',','.'))
 
                 data.append(tunti)
 
