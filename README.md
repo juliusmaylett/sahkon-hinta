@@ -1,1 +1,1 @@
-Hakee pörssisähkön hintatietoja Nordpoolin Day-Ahead -markkinalta. Hakutoiminnot pohjautuu (Sähkö.tk -applikaation) [https://github.com/slehtonen/sahko.tk] parsintatyökaluihin, joita muutin hieman paremmin vastaamaan omia tarpeitani.
+Hakee pörssisähkön hintatietoja Nordpoolin Day-Ahead -markkinalta. Hakutoiminnot pohjautuu  ['https://github.com/slehtonen/sahko.tk'](Sähkö.tk -applikaation) parsintatyökaluihin, joita muutin hieman paremmin vastaamaan omia tarpeitani.
